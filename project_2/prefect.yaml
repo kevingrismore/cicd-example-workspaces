@@ -6,20 +6,20 @@ build: null
 push:
   - prefect_aws.deployments.steps.push_to_s3:
       requires: prefect-aws
-      bucket: cicd-example-workspaces
+      bucket: "cicd-example-workspaces-{{ $ENVIRONMENT }}"
       folder: "{{ $PROJECT_NAME }}"
-      credentials: "{{ prefect.blocks.aws-credentials.ecs-worker-changes }}"
+      credentials: "{{ prefect.blocks.aws-credentials.cicd-example-workspaces }}"
 
 pull:
   - prefect_aws.deployments.steps.pull_from_s3:
       requires: prefect-aws
-      bucket: cicd-example-workspaces
+      bucket: "cicd-example-workspaces-{{ $ENVIRONMENT }}"
       folder: "{{ $PROJECT_NAME }}"
-      credentials: "{{ prefect.blocks.aws-credentials.ecs-worker-changes }}"
+      credentials: "{{ prefect.blocks.aws-credentials.cicd-example-workspaces }}"
 
 deployments:
   - name: my-project-2-deployment
-    entrypoint: "{{ $PROJECT_NAME }}/flow.py:hello"
+    entrypoint: flow.py:hello
     work_pool:
       name: k8s-demo
       work_queue_name: default
