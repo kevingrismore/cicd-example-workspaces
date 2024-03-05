@@ -55,7 +55,7 @@ jobs:
         env:
           PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY }}
           PREFECT_API_URL: ${{ secrets.PREFECT_PROD_WORKSPACE_URL }}
-          IMAGE_ID: ${{ steps.build-docker-image.outputs.image_id }}
+          IMAGE_NAME: ${{ steps.build-docker-image.outputs.metadata.image.name }}
         run: |
-          pip install -r requirements.txt
+          pip install -r $PROJECT_NAME/requirements.txt
           prefect deploy --all --prefect-file $PROJECT_NAME/prefect.yaml

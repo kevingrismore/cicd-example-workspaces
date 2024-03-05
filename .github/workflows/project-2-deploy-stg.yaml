@@ -9,6 +9,7 @@ on:
       - stg
     paths:
       - "project_2/**"
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -38,19 +39,11 @@ jobs:
             GITHUB_SHA: ${{ steps.get-commit-hash.outputs.COMMIT_HASH }}
         uses: docker/build-push-action@v5
         with:
-          context: $PROJECT_NAME/
+          context: ${{ env.PROJECT_NAME }}/
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/$PROJECT_NAME:$GITHUB_SHA-stg
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.PROJECT_NAME }}:${{ env.GITHUB_SHA }}-stg
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
-      - name: Update image Prefect Variable
-        env:
-          PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY }}
-          PREFECT_API_URL: ${{ secrets.PREFECT_STG_WORKSPACE_URL }}
-          VARIABLE_NAME: $PROJECT_NAME_image
-          VARIABLE_VALUE: ${{ steps.build-docker-image.outputs.image_id }}
-        run: update_variable.sh
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -62,7 +55,7 @@ jobs:
         env:
           PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY }}
           PREFECT_API_URL: ${{ secrets.PREFECT_STG_WORKSPACE_URL }}
-          IMAGE_ID: ${{ steps.build-docker-image.outputs.image_id }}
+          IMAGE_NAME: ${{ steps.build-docker-image.outputs.metadata.image.name }}
         run: |
-          pip install -r requirements.txt
+          pip install -r $PROJECT_NAME/requirements.txt
           prefect deploy --all --prefect-file $PROJECT_NAME/prefect.yaml
