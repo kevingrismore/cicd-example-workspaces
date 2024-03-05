@@ -24,4 +24,4 @@ deployments:
       name: k8s-demo
       work_queue_name: default
       job_variables:
-        image: {{ $IMAGE_NAME }}
+        image: "{{ $IMAGE_NAME }}"
