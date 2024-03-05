@@ -9,6 +9,7 @@ on:
       - main
     paths:
       - "project_2/**"
+  workflow_dispatch:
 
 jobs:
   deploy:
