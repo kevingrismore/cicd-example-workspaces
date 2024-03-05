@@ -1,6 +1,6 @@
 This is an advanced example for managing CI/CD across multiple workspaces.
 
-The GitHub Actions Workflows in this repo 
+The GitHub Actions workflows in this repo 
 - create mirrored deployments across staging and prod workspaces.
     - Which workspace flows are deployed to is determined by the branch that changes happen on: `stg` for staging, `main` for prod.
     - build and push docker images that do _not_ contain flow code, and are tagged like `:<commit-hash>-<environment>` to tie the code version and branch/env to image versions
@@ -14,6 +14,6 @@ This repo demonstrates a monorepo approach with multiple projects, each project 
 - a `Dockerfile`
 - a `requirements.txt`
 - its own flow(s)
-- its own independently triggered github actions workflow
+- its own independently triggered GitHub Actions workflow
 
 The configuration files heavily rely on templating to make copy/pasting files when starting new projects or adding deployments easier.
