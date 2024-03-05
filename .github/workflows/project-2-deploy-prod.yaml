@@ -38,7 +38,7 @@ jobs:
             GITHUB_SHA: ${{ steps.get-commit-hash.outputs.COMMIT_HASH }}
         uses: docker/build-push-action@v5
         with:
-          context: $PROJECT_NAME/
+          context: ${{ env.PROJECT_NAME }}/
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.PROJECT_NAME }}:${{ env.GITHUB_SHA }}-prod
           cache-from: type=gha
