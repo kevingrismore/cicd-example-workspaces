@@ -4,7 +4,7 @@ The GitHub Actions workflows in this repo
 - create mirrored deployments across staging and prod workspaces
     - which workspace flows are deployed to is determined by the branch that changes happen on: `stg` for staging, `main` for prod
 - build and push docker images that do _not_ contain flow code, and are tagged like `:<commit-hash>-<environment>` to tie the code version and branch/env to image versions
-- cache both docker image layers and pip dependencies for ultra fast rebuilds, rather than try to be creative with different routes through the deployment process
+- cache both docker image layers and pip dependencies for ultra fast rebuilds
 - push code to S3 (via the `push` step of each `prefect.yaml`), where:
     - each environment gets its own bucket
     - each project gets its own folder in that bucket
