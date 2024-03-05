@@ -60,9 +60,10 @@ jobs:
           PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY }}
           IMAGE_NAME: ${{ steps.build-docker-image.outputs.metadata.image.name }}
         run: |
-          pip install -r $PROJECT_NAME/requirements.txt
+          cd $PROJECT_NAME
+          pip install -r requirements.txt
           prefect cloud workspace set -w sales-engineering/sandbox-kevin-stg
-          prefect deploy --all --prefect-file $PROJECT_NAME/prefect.yaml
+          prefect deploy --all --prefect-file prefect.yaml
 
   deploy-production:
       name: Deploy to production

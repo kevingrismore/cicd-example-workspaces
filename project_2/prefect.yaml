@@ -19,7 +19,7 @@ pull:
 
 deployments:
   - name: my-project-2-deployment
-    entrypoint: "{{ $PROJECT_NAME }}_{{ $ENVIRONMENT}}/flow.py:hello"
+    entrypoint: flow.py:hello
     work_pool:
       name: k8s-demo
       work_queue_name: default
