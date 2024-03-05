@@ -9,10 +9,9 @@ on:
       - stg
     paths:
       - "$PROJECT_NAME/**"
-    paths-ignore:
-      - "$PROJECT_NAME/Dockerfile"
-      - "$PROJECT_NAME/requirements.txt"
-
+      - "!$PROJECT_NAME/Dockerfile"
+      - "!$PROJECT_NAME/requirements.txt"
+      
 jobs:
   deploy:
     name: Deploy to staging

@@ -56,7 +56,7 @@ jobs:
       - name: Prefect Deploy
         env:
           PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY }}
-          PREFECT_API_URL: ${{ secrets.PREFECT_STG_WORKSPACE_URL }}
+          
         run: |
           pip install -r requirements.txt
           prefect deploy --all --prefect-file $PROJECT_NAME/prefect.yaml
