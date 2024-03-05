@@ -40,7 +40,7 @@ jobs:
         with:
           context: $PROJECT_NAME/
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/$PROJECT_NAME:$GITHUB_SHA-prod
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.PROJECT_NAME }}:${{ env.GITHUB_SHA }}-prod
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
