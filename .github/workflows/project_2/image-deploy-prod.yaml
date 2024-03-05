@@ -8,8 +8,8 @@ on:
     branches:
       - main
     paths:
-      - "$PROJECT_NAME/requirements.txt"
-      - "$PROJECT_NAME/Dockerfile"
+      - "project_2/requirements.txt"
+      - "project_2/Dockerfile"
 
 jobs:
   deploy:
