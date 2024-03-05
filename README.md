@@ -16,4 +16,4 @@ This example demonstrates a monorepo approach with multiple projects, each proje
 - its own flow(s)
 - its own independently triggered GitHub Actions workflow
 
-The configuration files heavily rely on templating to make copy/pasting files when starting new projects or adding deployments easier.
+The configuration relies heavily rely on templating to make copy/pasting files when starting new projects or adding deployments easier.
