@@ -8,14 +8,14 @@ push:
       requires: prefect-aws
       bucket: cicd-example-workspaces
       folder: "{{ $PROJECT_NAME }}_{{ $ENVIRONMENT }}"
-      credentials: "{{ prefect.blocks.aws-credentials.ecs-worker-changes }}"
+      credentials: "{{ prefect.blocks.aws-credentials.cicd-example-workspaces }}"
 
 pull:
   - prefect_aws.deployments.steps.pull_from_s3:
       requires: prefect-aws
       bucket: cicd-example-workspaces
       folder: "{{ $PROJECT_NAME }}_{{ $ENVIRONMENT }}"
-      credentials: "{{ prefect.blocks.aws-credentials.ecs-worker-changes }}"
+      credentials: "{{ prefect.blocks.aws-credentials.cicd-example-workspaces }}"
 
 deployments:
   - name: my-project-2-deployment
