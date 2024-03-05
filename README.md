@@ -1,6 +1,6 @@
 This is an advanced example for managing CI/CD across multiple Prefect workspaces.
 
-The GitHub Actions workflows in this repo 
+The GitHub Actions workflows in this repo: 
 - create mirrored deployments across staging and prod workspaces
     - which workspace flows are deployed to is determined by the branch that changes happen on: `stg` for staging, `main` for prod
 - build and push docker images that do _not_ contain flow code, and are tagged like `:<commit-hash>-<environment>` to tie the code version and branch/env to image versions
