@@ -58,7 +58,7 @@ jobs:
       - name: Prefect Deploy
         env:
           PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY }}
-          IMAGE_NAME: ${{ steps.build-docker-image.outputs.metadata.image.name }}
+          IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/${{ env.PROJECT_NAME }}:${{ env.GITHUB_SHA }}-${{ env.ENVIRONMENT }}
         run: |
           cd $PROJECT_NAME
           pip install -r requirements.txt
@@ -97,7 +97,7 @@ jobs:
           with:
             context: ${{ env.PROJECT_NAME }}/
             push: true
-            tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.PROJECT_NAME }}:${{ env.GITHUB_SHA }}-prod
+            tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.PROJECT_NAME }}:${{ env.GITHUB_SHA }}-${{ env.ENVIRONMENT }}
             cache-from: type=gha
             cache-to: type=gha,mode=max
 
@@ -110,7 +110,7 @@ jobs:
         - name: Prefect Deploy
           env:
             PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY }}
-            IMAGE_NAME: ${{ steps.build-docker-image.outputs.metadata.image.name }}
+            IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/${{ env.PROJECT_NAME }}:${{ env.GITHUB_SHA }}-${{ env.ENVIRONMENT }}
           run: |
             cd $PROJECT_NAME
             pip install -r requirements.txt
