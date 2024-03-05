@@ -45,14 +45,6 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      - name: Update image Prefect Variable
-        env:
-          PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY }}
-          PREFECT_API_URL: ${{ secrets.PREFECT_PROD_WORKSPACE_URL }}
-          VARIABLE_NAME: $PROJECT_NAME_image
-          VARIABLE_VALUE: ${{ steps.build-docker-image.outputs.image_id }}
-        run: update_variable.sh
-
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
