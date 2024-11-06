@@ -8,12 +8,12 @@ on:
     types:
       - opened
     paths:
-      - "project_1/**"
+      - "project_2/**"
   push:
     branches:
       - main
     paths:
-      - "project_1/**"
+      - "project_2/**"
   workflow_dispatch:
 
 jobs:
