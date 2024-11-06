@@ -4,19 +4,23 @@ env:
   PROJECT_NAME: project_2
 
 on:
+  pull_request:
+    types:
+      - opened
+    paths:
+      - "project_1/**"
   push:
     branches:
-      - stg
       - main
     paths:
-      - "project_2/**"
+      - "project_1/**"
   workflow_dispatch:
 
 jobs:
   deploy-staging:
     name: Deploy to staging
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/stg'
+    if: github.event_name == 'pull_request'
     env:
       ENVIRONMENT: stg
 
@@ -68,7 +72,7 @@ jobs:
   deploy-production:
       name: Deploy to production
       runs-on: ubuntu-latest
-      if: github.ref == 'refs/heads/main'
+      if: github.event_name == 'push'
       env:
         ENVIRONMENT: prod
 
